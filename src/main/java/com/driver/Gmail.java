@@ -93,7 +93,7 @@ public class Gmail extends Email {
 
        for (mail m:received){
            Date currentDate=m.date;
-           if(currentDate.before(end) && currentDate.after(start)){
+           if(currentDate.compareTo(start)>=0 && currentDate.compareTo(end)<=0){
              count++;
            }
        }
@@ -120,6 +120,7 @@ public class Gmail extends Email {
 
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
-        return inboxCapacity;
+        int capacity=this.inboxCapacity;
+        return capacity;
     }
 }
