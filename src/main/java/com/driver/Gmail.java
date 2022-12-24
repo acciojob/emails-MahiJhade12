@@ -50,7 +50,8 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
         for(mail m:received){
-            if(received.contains(message)){
+            String msg=m.message;
+            if(received.contains(msg)){
                 received.remove(m);
             }
         }
@@ -88,9 +89,15 @@ public class Gmail extends Email {
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
         int count=0;
-        int numOfDays = (int) ChronoUnit.DAYS.between(start.toInstant(), end.toInstant());
 
-        return numOfDays;
+       for (mail m:received){
+           Date currentDate=m.date;
+           if(currentDate.before(end) && currentDate.after(start)){
+             count++;
+           }
+       }
+
+        return count;
 
 
     }

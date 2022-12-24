@@ -17,6 +17,7 @@ public class Workspace extends Gmail{
 
     public Workspace(String emailId) {
         super(emailId,Integer.MAX_VALUE);
+        this.calendar=new ArrayList<>();
 
         // The inboxCapacity is equal to the maximum value an integer can store.
     }
@@ -35,6 +36,8 @@ public class Workspace extends Gmail{
         // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
         HashSet<Meeting> findMax=new HashSet<>();
         for(Meeting m:calendar){
+           // LocalTime startTime=m.startTime;
+            //if()
             findMax.add(m);
         }
         int maxMeeting=findMax.size();
