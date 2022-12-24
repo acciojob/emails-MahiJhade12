@@ -50,8 +50,7 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
         for(mail m:received){
-            String msg=m.message;
-            if(received.contains(msg)){
+            if(received.contains(message)){
                 received.remove(m);
             }
         }
