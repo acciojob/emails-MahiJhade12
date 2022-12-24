@@ -37,8 +37,10 @@ public class Gmail extends Email {
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
          mail newMail=new mail(date,sender,message);
-        if(received.size()==inboxCapacity){
-             trash.add(received.remove(0));
+        if(received.size()>=inboxCapacity){
+             mail oldMail=received.remove(0);
+             trash.add(oldMail);
+             received.add(newMail);
          }
          else {
              received.add(newMail);
