@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Workspace extends Gmail{
+public class Workspace extends Gmail {
 
     private ArrayList<Meeting> calendar; // Stores all the meetings
 
@@ -14,53 +14,33 @@ public class Workspace extends Gmail{
     }
 
     public Workspace(String emailId) {
-        super(emailId,Integer.MAX_VALUE);
-        this.calendar=new ArrayList<>();
+        super(emailId, Integer.MAX_VALUE);
+        this.calendar = new ArrayList<>();
 
         // The inboxCapacity is equal to the maximum value an integer can store.
     }
 
 
-    public void addMeeting(Meeting meeting){
+    public void addMeeting(Meeting meeting) {
         //add the meeting to calendar
         calendar.add(meeting);
 
     }
 
-    public int findMaxMeetings(){
-        // find the maximum number of meetings you can attend
-        // 1. At a particular time, you can be present in at most one meeting
-        // 2. If you want to attend a meeting, you must join it at its start time and leave at end time.
-        // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
-        Collections.sort(calendar, new Comparator<Meeting>() {
-            @Override
-            public int compare(Meeting o1, Meeting o2) {
-                if((o1.getStartTime()).compareTo(o2.getStartTime())!=0)
-                    return  (o1.getStartTime()).compareTo(o2.getStartTime());
+    public int findMaxMeetings() {
 
-                return  (o2.getEndTime()).compareTo(o1.getEndTime());
-            }
-        });
+        LocalTime time_limit = LocalTime.ofSecondOfDay(0);
+        int count = 1;
+        mycomparator mc = new mycomparator();
+        Collections.sort(calendar, mc);
+        for (int i = 1; i < calendar.size(); i++) {
 
-//        for( Meeting m:calendar){
-//            System.out.println(m.getStartTime()+" "+m.getEndTime());
-//        }
-        int x=1;
-        int ans=0;
-        Meeting m=calendar.get(0);
-        for(int i=1;i<calendar.size();i++){
-            if((calendar.get(i)).getStartTime().compareTo(m.getEndTime())>0){
-                x++;
-                m=calendar.get(i);
+            if (calendar.get(i).getStartTime().compareTo(time_limit) > 0) {
+                count++;
+                time_limit = calendar.get(i).getEndTime();
             }
-            else{
-                ans=Math.max(ans,x);
-                m=calendar.get(i);
-                x=1;
-            }
-            ans=Math.max(ans,x);
+
         }
-
-        return ans;
+        return count;
     }
 }
