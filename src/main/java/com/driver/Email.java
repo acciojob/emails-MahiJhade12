@@ -74,7 +74,7 @@ public class Email {
         }
         else {
             if(conditionCheck(newPassword)){
-                System.out.println("New password set successfully");
+                System.out.println("New Password set successfully");
                 setPassword(newPassword);
             }
         }
