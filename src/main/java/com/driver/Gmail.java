@@ -10,7 +10,7 @@ import java.util.HashSet;
 public class Gmail extends Email {
 
 
-    /*public class mail{
+    public class mail{
         Date date;
         String sender;
         String message;
@@ -121,8 +121,8 @@ public class Gmail extends Email {
         return capacity;
     }
 }
-*/
-    int inboxCapacity;
+
+   /* int inboxCapacity;
     private ArrayList<Triple<Date, String, String>> Inbox; //triple of date (Date), sender (String), message (String)
     private ArrayList<Triple<Date, String, String>> Trash;
     public Gmail(String emailId, int inboxCapacity) {
@@ -209,4 +209,4 @@ public class Gmail extends Email {
     public int getInboxCapacity() {
         return inboxCapacity;
     }
-}
+}*/
