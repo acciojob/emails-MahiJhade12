@@ -30,6 +30,11 @@ public class Email {
         this.password = password;
     }
     private boolean conditionCheck(@NotNull String newPassword) {
+
+        if(newPassword.length() < 8){
+            return false;
+        }
+
         int n = newPassword.length();
         String inputPassword = newPassword;
         int uppercase = 0;
@@ -40,26 +45,21 @@ public class Email {
         for (int index = 0; index < inputPassword.length(); index++) {
             if (Character.isUpperCase(Password[index])) {
                 uppercase = 1;
-            }
-            if (Character.isLowerCase(Password[index])) {
+            } else if (Character.isLowerCase(Password[index])) {
                 lowercase = 1;
-            }
-            if (Character.isDigit(Password[index])) {
+            } else if (Character.isDigit(Password[index])) {
                 digits = 1;
+            } else if (uppercase != 0 && lowercase != 0 && digits != 0) ;
+            {
+                specialcharacters = 1;
+            }
+
+            if (inputPassword.length() >= 8 && (uppercase == 1) && (lowercase == 1) && (digits == 1) && (specialcharacters == 1)) {
+                return true;
             }
         }
-        if (inputPassword.contains("~") || inputPassword.contains("!") || inputPassword.contains("@")
-                || inputPassword.contains("#") || inputPassword.contains("$") || inputPassword.contains("%")
-                || inputPassword.contains("^") || inputPassword.contains("&") || inputPassword.contains("*")) ;
-        {
-            specialcharacters = 1;
+            return false;
         }
-
-        if (inputPassword.length() >= 8 && (uppercase == 1) && (lowercase == 1) && (digits == 1) && (specialcharacters == 1)) {
-            return true;
-        }
-        return false;
-    }
     
 
     public void changePassword(String oldPassword, String newPassword) {
