@@ -1,5 +1,7 @@
 package com.driver;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -7,12 +9,12 @@ public class Email {
 
     private String emailId;
     private String password;
-    private boolean conditionCheck;
+
 
     public Email(String emailId) {
         this.emailId = emailId;
         this.password = "Accio@123";
-        conditionCheck=false;
+
     }
 
     public String getEmailId() {
@@ -27,7 +29,7 @@ public class Email {
     public void setPassword(String password) {
         this.password = password;
     }
-    private boolean conditionCheck(String newPassword) {
+    private boolean conditionCheck(@NotNull String newPassword) {
         int n = newPassword.length();
         String inputPassword = newPassword;
         int uppercase = 0;
@@ -67,16 +69,17 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        String currPassword = getPassword();
-        if (oldPassword != currPassword) {
-            System.out.println("Old password incorrect");
-            return;
-        }
-        else {
+        if(oldPassword.equals(password)){
             if(conditionCheck(newPassword)){
-                System.out.println("New Password set successfully");
-                setPassword(newPassword);
+                System.out.println("Password changed successfully!");
+                this.password = newPassword;
             }
+            else{
+                System.out.println("The new password is not valid!");
+            }
+        }
+        else{
+            System.out.println("The given password does not match current password!");
         }
     }
 
