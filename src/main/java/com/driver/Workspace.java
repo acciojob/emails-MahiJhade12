@@ -28,21 +28,7 @@ public class Workspace extends Gmail {
     }
 
     public int findMaxMeetings() {
-/*
-        LocalTime time_limit = LocalTime.ofSecondOfDay(0);
-        int count = 1;
-        mycomparator mc = new mycomparator();
-        Collections.sort(calendar, mc);
-        for (int i = 1; i < calendar.size(); i++) {
 
-            if (calendar.get(i).getStartTime().compareTo(time_limit) > 0) {
-                count++;
-                time_limit = calendar.get(i).getEndTime();
-            }
-
-        }
-        return count;
-    }*/
         ArrayList<Pair<LocalTime, Integer>> endTimes = new ArrayList<>();
 
         for (int i = 0; i < calendar.size(); i++) {
